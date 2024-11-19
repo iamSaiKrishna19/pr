@@ -1,0 +1,49 @@
+ clc
+clear all
+close all
+% Define the time range
+t = -10:0.01:15;  % Time vector from -1 to 13 for better visualization
+% Define the amplitude and starting point
+amplitude = 10;
+start_time = -8;
+end_time = 0;
+% Create the unit step function
+u = amplitude * (heaviside(t - start_time) - heaviside(t - end_time));
+x1=2*(heaviside(t+6)-heaviside(t+2))
+% Define the parameters
+start_time = -4;
+end_time = -2;
+initial_value = 6;  % Initial value of the exponential function
+final_value = 0.1;  % Value at the end time
+decay_constant = -log(final_value / initial_value) / (end_time - start_time);
+% Create the exponential decay function
+exponential_decay = initial_value * exp(-decay_constant * (t - start_time));
+exponential_decay(t < start_time) = 0;  % Ensure function is 0 before start_time
+% Plot the exponential decay function
+plot(t,u+x1+exponential_decay,'linewidth',2)
+
+
+
+ clc
+clear all
+close all
+% Define the time range
+t = -1:0.01:13;  % Time vector from -1 to 13 for better visualization
+% Define the amplitude and starting point
+amplitude = 8;
+start_time = 0;
+end_time = 12;
+% Create the unit step function
+u = amplitude * (heaviside(t - start_time) - heaviside(t - end_time));
+x1=2*(heaviside(t-2)-heaviside(t-10))
+% Define the ramp parameters
+start_time = 4;
+end_time = 6;
+start_time1 = 8;
+end_time1 = 6;
+ramp = (t - start_time) .* (heaviside(t - start_time) - heaviside(t - end_time));
+ramp(t < start_time) = 0;  % Ensure ramp is 0 before start_time
+% Create the ramp function
+ramp1 = (t - start_time1) .* (heaviside(t - start_time1) - heaviside(t - end_time1));
+ramp1(t > start_time1) = 0;  % Ensure ramp is 0 before start_time
+plot(t,u+x1+ramp+ramp1,'linewidth',2)
