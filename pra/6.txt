@@ -1,0 +1,30 @@
+clc; 
+close all; 
+clear all; 
+t = 0:0.01:1; 
+u = t>=0; 
+e4t = exp(4*t); 
+circular_conv = conv(u,e4t); 
+plot(circular_conv); 
+ 
+figure(); 
+x = 1:4; 
+h = [ 1 2 1 2 ]; 
+plot(conv(x,h)); 
+ 
+x = [1; 2; 3; 4] 
+h = [ 1; 2; 1; 2 ]; 
+figure() 
+result = x*h'; 
+[m,n] =size(result); 
+diagonal_sum = zeros(1,m+n-1); 
+for k = 1:(m+n-1) 
+    for i= 1:m 
+        for j = 1:n 
+           if(i+j-1 == k) 
+                diagonal_sum(k)=diagonal_sum(k)+result(i,j); 
+           end 
+        end 
+    end 
+end 
+plot(diagonal_sum) 

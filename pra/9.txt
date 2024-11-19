@@ -1,0 +1,36 @@
+% Define the time vector 
+fs = 1000; 
+% Sampling frequency (Hz) 
+t = 0:1/fs:1; 
+%Time vector from 0 to 1 second 
+% Define the input signal (sine wave) 
+f = 5; 
+% Frequency of the sine wave (Hz) 
+x = sin(2*pi*f*t); 
+% Input signal 
+% Half-wave rectification 
+half_wave = max(x, 0); 
+% Keep only positive value  
+% Full-wave rectification 
+full_wave = abs(x); 
+% Take absolute values 
+% Plotting 
+figure; 
+% Original Signal 
+subplot(3, 1, 1); 
+plot(t, x); 
+title("Original Signal (Sine Wave)"); 
+xlabel('Time (s)'); ylabel('Amplitude'); 
+grid on; 
+% Half-Wave Rectified Signal 
+subplot(3, 1, 2); 
+plot(t, half_wave); 
+title('Half-Wave Rectified Signal'); 
+xlabel('Time (s)'); ylabel('Amplitude');  
+grid on; 
+% Full-Wave Rectified Signal 
+subplot(3, 1, 3); 
+plot(t, full_wave); 
+title('Full-Wave Rectified Signal'); 
+xlabel('Time (s)'); ylabel('Amplitude'); 
+grid on;

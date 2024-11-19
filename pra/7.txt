@@ -1,0 +1,36 @@
+f0 = 1;                 
+T = 1/f0;               
+% Fundamental frequency in Hz 
+% Period of the waveform 
+t = linspace(0,1,1000);           
+N = 1000;                 
+% Time vector for one period (0 to T with fine 
+% Number of harmonics (higher N for better approximation) 
+% Square Wave Generation Using Fourier Series 
+x_square = zeros(size(t)); 
+for k = 1:2:N          
+% Only odd harmonics 
+x_square = x_square + (4 / (pi * k)) * sin(2 * pi * k * f0 * t); 
+end 
+% Triangular Wave Generation Using Fourier Series 
+x_triangle = zeros(size(t)); 
+for k = 1:2:N          
+% Only odd harmonics 
+x_triangle = x_triangle + (8 / (pi^2 * k^2)) * ((-1)^((k-1)/2)) * sin(2 * pi * k * f0 * t); 
+end 
+% Plot the Results 
+figure; 
+% Square Wave Plot 
+subplot(2, 1, 1); 
+plot(t, x_square, 'b'); 
+title('Square Wave from Fourier Series'); 
+xlabel('Time (s)'); 
+ylabel('Amplitude'); 
+grid on; 
+% Triangular Wave Plot 
+subplot(2, 1, 2); 
+plot(t, x_triangle, 'r'); 
+title('Triangular Wave from Fourier Series'); 
+xlabel('Time (s)'); 
+ylabel('Amplitude'); 
+grid on;

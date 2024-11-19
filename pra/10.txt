@@ -1,0 +1,44 @@
+% Clear variables and close figures 
+clear; clc; close all;  
+% Define parameters 
+n = 0:40;  
+al = 0.5;  % Replace this with the desired scaling factor for al  
+a2 = 0.3;  % Replace this with the desired scaling factor for a2  
+% Define input signals 
+x1 = cos(2 * pi * 0.1 * n);  
+x2 = cos(2 * pi * 0.4 * n);
+x3 = al * x1 + a2 * x2;  
+% Define the system output y(n) = n * x(n) 
+y1 = n .* x1; 
+y2 = n .* x2; 
+y3 = n .* x3;  
+% Calculate the weighted sum of individual outputs 
+yt = al * y1 + a2 * y2;  
+% Check linearity by comparing y3 with yt  
+if isequal(y3, yt)  
+    disp('The given system [y(n) = n * x(n)] is Linear'); 
+else  
+    disp('The given system [y(n) = n * x(n)] is NonLinear');
+end  
+
+
+
+
+% Define a second system y(n) = x(n).^2 to test linearity 
+x1 = [1, 2, 3, 4, 5];  
+x2 = [1, 4, 7, 6, 4];  
+% Ensure both x1 and x2 have the same length  
+% Define x3 as a linear combination of x1 and x2
+x3 = al * x1 + a2 * x2;  
+% Calculate the output of the system for each input squared 
+y1 = x1 .^ 2; 
+y2 = x2 .^ 2; 
+y3 = x3 .^ 2;  
+% Calculate the weighted sum of the squared outputs  
+yt = al * y1 + a2 * y2;  
+% Check linearity by comparing y3 with yt for the squared system 
+if isequal(y3, yt)  
+    disp('The given system [y(n) = x(n).^2] is Linear'); 
+else  
+    disp('The given system [y(n) = x(n).^2] is Non-Linear'); 
+end 

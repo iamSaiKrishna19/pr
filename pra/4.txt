@@ -1,0 +1,29 @@
+ % Define the time vector and signal
+ t =-5:0.01:5; % Continuous-time vector (symmetric around 0)
+ x = t; % Example signal (modify as needed, e.g., x = sin(t), exp(-abs(t)),
+ % Compute the flipped signal
+ x_flipped = flip(x); % Equivalent to x(-t)
+ % Check symmetry
+ tolerance = 1e-5; % Tolerance for numerical precision
+ is_even = all(abs(x- x_flipped) < tolerance); % Check if x(t) == x(-t)
+is_odd = all(abs(x + x_flipped) < tolerance); % Check if x(t) ==-x(-t)
+ % Determine the type of signal
+ if is_even
+ disp('The signal is Even.');
+ elseif is_odd
+ disp('The signal is Odd.');
+ else
+ disp('The signal is Neither Even nor Odd.');
+ end
+ % Plot the signal
+ figure;
+ subplot(2,1,1);
+ plot(t, x, 'LineWidth', 1.5);
+ xlabel('t');
+ ylabel('x(t)');
+ title('Original Signal');
+ subplot(2,1,2);
+ plot(t, x_flipped, 'LineWidth', 1.5);
+ xlabel('t');
+ ylabel('x(-t)');
+ title('Flipped Signal')

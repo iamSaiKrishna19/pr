@@ -1,0 +1,27 @@
+% Example discrete signal x[n] (you can replace this with your signal)
+n = 0:10;  % Example time indices for a discrete signal
+x = sin(2*pi*0.1*n);  % Example signal (sine wave)
+
+% Calculate the energy of the signal (sum of squares of x[n])
+energy = sum(abs(x).^2);
+
+% Calculate the average power of the signal (average of the squared values)
+power = mean(abs(x).^2);
+
+% Display the results
+disp(['Energy of the signal: ', num2str(energy)]);
+disp(['Power of the signal: ', num2str(power)]);
+
+
+% continous-duration signal (sine wave over a very large time range)
+t = linspace(0, 1000, 10000);  % Long time range
+x = sin(2*pi*0.1*t);
+
+% Energy and Power Calculation
+Energy = trapz(t, abs(x).^2);
+Power = mean(abs(x).^2);
+
+disp(['Energy: ', num2str(Energy)]);
+disp(['Power: ', num2str(Power)]);
+
+

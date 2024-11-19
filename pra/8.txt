@@ -1,0 +1,37 @@
+% Parameters
+t = linspace(0, 2*pi, 1000); % Time vector
+N = 20;                      % Number of terms in the Fourier series for sawtooth wave
+A = 1;                       % Amplitude
+
+% Initialize waveforms
+sawtooth_wave = zeros(size(t)); 
+impulse_wave = zeros(size(t)); 
+
+% Generate the sawtooth wave (Fourier series with odd harmonics only)
+for n = 1:2:N % Odd harmonics only
+    sawtooth_wave = sawtooth_wave + (4 * A / (n * pi)) * sin(n * t);
+end
+
+% Generate the impulse wave (Dirac Comb) by placing impulses at specific time points
+impulse_wave(round(length(t)/4)) = 1;  % Impulse at one quarter of the period
+impulse_wave(round(length(t)/2)) = 1;  % Impulse at half of the period
+impulse_wave(round(3*length(t)/4)) = 1; % Impulse at three quarters of the period
+
+% Plot the results
+figure;
+
+% Sawtooth Wave Plot
+subplot(2, 1, 1); 
+plot(t, sawtooth_wave, 'r', 'LineWidth', 1.5);
+title('Sawtooth Wave from Fourier Series');
+xlabel('Time (t)');
+ylabel('Amplitude');
+grid on;
+
+% Impulse Wave Plot
+subplot(2, 1, 2); 
+stem(t, impulse_wave, 'k', 'LineWidth', 1.5, 'MarkerSize', 4);
+title('Impulse Wave (Dirac Comb)');
+xlabel('Time (t)');
+ylabel('Amplitude');
+grid on;
